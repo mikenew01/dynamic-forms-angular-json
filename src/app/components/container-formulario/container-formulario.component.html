@@ -1,0 +1,23 @@
+<mat-card class="mat-elevation-z6">
+  <mat-card-header>
+    <mat-card-title>Formulário</mat-card-title>
+  </mat-card-header>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <mat-card-content>
+      <div>
+        <mat-accordion fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-evenly">
+          <app-painel-pergunta *ngFor="let painelPergunta of painelPerguntas"
+                               [form]="form"
+                               [painelPergunta]="painelPergunta"></app-painel-pergunta>
+        </mat-accordion>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-raised-button type="button">Cancelar</button>
+      <button mat-raised-button color="primary" type="submit">Salvar</button>
+    </mat-card-actions>
+  </form>
+
+</mat-card>

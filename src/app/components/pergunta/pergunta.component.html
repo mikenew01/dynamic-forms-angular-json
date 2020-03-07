@@ -1,0 +1,21 @@
+<div [formGroup]="form">
+  <div [ngSwitch]="pergunta.controlType">
+    <mat-form-field *ngSwitchCase="'text'">
+      <mat-label [attr.for]="pergunta.key">{{pergunta.label}}</mat-label>
+      <input matInput
+             [placeholder]="pergunta.placeholder"
+             [formControlName]="pergunta.key"
+             [id]="pergunta.key"
+             [type]="pergunta.type">
+    </mat-form-field>
+
+    <mat-form-field *ngSwitchCase="'dropdown'">
+      <mat-label>{{pergunta.label}}</mat-label>
+      <mat-select [id]="pergunta.key"
+                  [formControlName]="pergunta.key" >
+        <mat-option>Selecione</mat-option>
+        <mat-option *ngFor="let opt of pergunta.options" [value]="opt.value">{{opt.key}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
