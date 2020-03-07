@@ -17,5 +17,9 @@
         <mat-option *ngFor="let opt of pergunta.options" [value]="opt.value">{{opt.key}}</mat-option>
       </mat-select>
     </mat-form-field>
+
+    <div *ngFor="let validation of pergunta.validations">
+      <mat-error *ngIf="hasErros(pergunta.key, validation?.validation?.toLowerCase())">{{validation?.message}}</mat-error>
+    </div>
   </div>
 </div>

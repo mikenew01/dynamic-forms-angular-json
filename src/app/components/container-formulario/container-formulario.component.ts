@@ -29,7 +29,12 @@ export class ContainerFormularioComponent implements OnInit {
             label: 'Nome',
             type: 'text',
             placeholder: 'Ex: Maikon Canuto',
-            order: 2
+            order: 2,
+            validations: [
+              {validation: 'email', message: 'Campo inválido, precisa digitar e-mail'},
+              {validation: 'minLength', value: 3, message: 'Necessário preencher o campo.'},
+              {validation: 'maxLength', value: 4, message: 'Caracters máximos 2'},
+            ]
           }),
           new Field({
             controlType: 'text',
