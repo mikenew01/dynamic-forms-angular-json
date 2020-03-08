@@ -10,7 +10,7 @@ import {FormularioService} from "../../services/formulario.service";
 })
 export class ContainerFormularioComponent {
 
-  painelPerguntas$: Observable<any>;
+  painelPerguntas$: Observable<PainelPergunta[]>;
 
   constructor(private formularioService: FormularioService) {
     this.painelPerguntas$ = this.formularioService.getFormularioVeiculos();

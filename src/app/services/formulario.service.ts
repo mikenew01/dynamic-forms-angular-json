@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Field} from "../model/field.model";
 import {PainelPergunta} from "../model/painel-pergunta.model";
-import {of} from "rxjs";
+import {Observable, of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +41,7 @@ export class FormularioService {
     });
   }
 
-  public getFormularioVeiculos() {
+  public getFormularioVeiculos(): Observable<PainelPergunta[]> {
     const perguntas = [
       new PainelPergunta({
         titulo: 'Dados Básicos',
@@ -52,7 +52,7 @@ export class FormularioService {
             key: 'identificadorRequisicao',
             label: 'Identificador da requisição',
             required: false,
-            order: 0,
+            order: 1,
             controlType: 'text',
             type: 'text',
             placeholder: 'Identificador da requisição',
@@ -70,7 +70,7 @@ export class FormularioService {
             key: 'nomePerito',
             label: 'Nome do perito',
             required: false,
-            order: 1,
+            order: 2,
             controlType: 'text',
             type: 'text',
             placeholder: 'Nome do perito',
@@ -88,7 +88,7 @@ export class FormularioService {
             key: 'local',
             label: 'Local',
             required: false,
-            order: 2,
+            order: 4,
             type: 'inputMap',
             controlType: 'inputMap',
             placeholder: 'Local da perícia',
@@ -102,7 +102,7 @@ export class FormularioService {
             key: 'tipoVeiculo',
             label: 'Tipo do veículo',
             required: true,
-            order: 3,
+            order: 0,
             controlType: 'dropdown',
             type: 'dropdown',
             placeholder: 'Selecione o tipo de veículo',
@@ -181,7 +181,7 @@ export class FormularioService {
             key: 'dataDeSolicitacao',
             label: 'Data da solicitação',
             required: false,
-            order: 4,
+            order: 3,
             type: 'datePicker',
             controlType: 'datePicker',
             placeholder: 'Data da solicitação',
@@ -262,7 +262,12 @@ export class FormularioService {
       })
     ];
 
-    return of(perguntas);
+    const perguntasTmp = perguntas.map(p => {
+      p.perguntas = p.perguntas.sort((a, b) => a.order - b.order);
+      return p;
+    });
+
+    return of(perguntasTmp);
   }
 
 }

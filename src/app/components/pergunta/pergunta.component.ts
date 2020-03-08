@@ -24,12 +24,4 @@ export class PerguntaComponent implements OnInit {
     return this.form.controls[controlName].hasError(errorName);
   }
 
-  getvalidation(pergunta: Field<any>, validation: string): boolean {
-    const validacao  = pergunta
-      .validations
-      .filter(v => v.validation === validation);
-
-    return !!validation;
-  }
-
 }
