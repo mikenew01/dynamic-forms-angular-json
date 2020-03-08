@@ -24,6 +24,7 @@
     <div *ngSwitchCase="'radio'" fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="space-envely start">
       <mat-label><strong>{{pergunta.label}}</strong></mat-label>
       <mat-radio-group [formControlName]="pergunta.key"
+                       color="primary"
                        [matTooltip]="pergunta.tooltip || pergunta.label"
                        fxLayout="row"
                        fxLayoutAlign="space-between center" fxLayoutGap="20px">
