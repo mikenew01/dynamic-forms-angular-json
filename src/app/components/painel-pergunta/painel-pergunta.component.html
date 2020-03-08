@@ -2,10 +2,13 @@
                       (closed)="panelOpenState = false">
   <mat-expansion-panel-header>
     <mat-panel-title>{{painelPergunta.titulo}}</mat-panel-title>
-    <mat-panel-description>{{painelPergunta.descricao}}</mat-panel-description>
+    <mat-panel-description fxLayout="row" fxLayoutAlign="space-between center">
+      <span>{{painelPergunta.descricao}}</span>
+      <span class="count">{{perguntaCount.atual}}/{{perguntaCount.total}} respondidas</span>
+    </mat-panel-description>
   </mat-expansion-panel-header>
 
   <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-between start">
-    <app-pergunta fxFlex="100" *ngFor="let pergunta of painelPergunta.perguntas" [form]="form" [pergunta]="pergunta"></app-pergunta>
+    <app-pergunta (focusout)="change($event)" fxFlex="100" *ngFor="let pergunta of painelPergunta.perguntas" [form]="form" [pergunta]="pergunta"></app-pergunta>
   </div>
 </mat-expansion-panel>

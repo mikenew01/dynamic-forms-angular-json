@@ -1,6 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {PainelPergunta} from "../../model/painel-pergunta.model";
 import {FormGroup} from "@angular/forms";
+
+export interface PerguntaCount {
+  total: number;
+  atual: number;
+}
 
 @Component({
   selector: 'app-painel-pergunta',
@@ -11,6 +16,8 @@ export class PainelPerguntaComponent implements OnInit {
 
   panelOpenState = false;
 
+  perguntaCount: PerguntaCount;
+
   @Input()
   painelPergunta: PainelPergunta;
 
@@ -20,6 +27,28 @@ export class PainelPerguntaComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.getValues();
+  }
+
+  getValues() {
+    const registros = Object.keys(this.form.controls);
+    let atual = 0;
+
+    registros.forEach(r => {
+      const value = this.form.controls[r].value;
+
+      if(value !== '' && value !== undefined && value !== null)
+        atual++;
+    });
+
+    this.perguntaCount = {
+      total: registros.length,
+      atual: atual
+    };
+  }
+
+  change(changes: any): void {
+    this.getValues();
   }
 
 }
