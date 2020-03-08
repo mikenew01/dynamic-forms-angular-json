@@ -3,6 +3,7 @@
     <mat-form-field *ngSwitchCase="'text'">
       <mat-label [attr.for]="pergunta.key">{{pergunta.label}}</mat-label>
       <input matInput
+             [matTooltip]="pergunta.tooltip || pergunta.label"
              [placeholder]="pergunta.placeholder"
              [formControlName]="pergunta.key"
              [id]="pergunta.key"
@@ -12,7 +13,9 @@
     <mat-form-field *ngSwitchCase="'dropdown'">
       <mat-label>{{pergunta.label}}</mat-label>
       <mat-select [id]="pergunta.key"
-                  [formControlName]="pergunta.key" >
+                  [formControlName]="pergunta.key"
+                  [matTooltip]="pergunta.tooltip || pergunta.label"
+      >
         <mat-option>Selecione</mat-option>
         <mat-option *ngFor="let opt of pergunta.options" [value]="opt.value">{{opt.key}}</mat-option>
       </mat-select>
@@ -20,7 +23,10 @@
 
     <div *ngSwitchCase="'radio'" fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="space-envely start">
       <mat-label><strong>{{pergunta.label}}</strong></mat-label>
-      <mat-radio-group [formControlName]="pergunta.key" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+      <mat-radio-group [formControlName]="pergunta.key"
+                       [matTooltip]="pergunta.tooltip || pergunta.label"
+                       fxLayout="row"
+                       fxLayoutAlign="space-between center" fxLayoutGap="20px">
         <mat-radio-button fxFlex="50" *ngFor="let opt of pergunta.options"
                           [value]="opt.value">{{opt.key}}</mat-radio-button>
       </mat-radio-group>
@@ -29,6 +35,7 @@
     <mat-form-field *ngSwitchCase="'datePicker'">
       <input matInput [matDatepicker]="dataPicker"
              [placeholder]="pergunta.placeholder"
+             [matTooltip]="pergunta.tooltip || pergunta.label"
              [id]="pergunta.key"
              [formControlName]="pergunta.key">
 
@@ -41,6 +48,7 @@
              [type]="pergunta.type"
              [placeholder]="pergunta.placeholder"
              [id]="pergunta.key"
+             [matTooltip]="pergunta.tooltip || pergunta.label"
              [formControlName]="pergunta.key">
     </mat-form-field>
 
@@ -48,6 +56,7 @@
       <input matInput
              [placeholder]="pergunta.key"
              [id]="pergunta.key"
+             [matTooltip]="pergunta.tooltip || pergunta.label"
              [formControlName]="pergunta.key">
       <mat-icon matSuffix (click)="pergunta.actionClick()">{{pergunta.icon}}</mat-icon>
     </mat-form-field>

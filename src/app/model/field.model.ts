@@ -9,6 +9,7 @@ export class Field<T> {
   placeholder: string;
   actionClick?: any;
   icon?: string;
+  tooltip?: string;
   validations: {
     validation: string,
     value?: any,
@@ -26,6 +27,7 @@ export class Field<T> {
     required?: boolean,
     icon?: string;
     order?: number,
+    tooltip?: string,
     controlType?: string,
     type?: string,
     placeholder?: string;
@@ -34,6 +36,7 @@ export class Field<T> {
     validations?: {validation: string, value?: any, message?: string}[]
   } = {}) {
 
+    this.tooltip = options.tooltip;
     this.icon = options.icon;
     this.actionClick = options.actionClick;
     this.value = options.value;

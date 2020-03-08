@@ -20,6 +20,7 @@ import {ContainerInnerFormComponent} from './components/container-formulario/con
 import {MatRadioModule} from "@angular/material/radio";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatIconModule} from "@angular/material/icon";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {MatIconModule} from "@angular/material/icon";
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatIconModule
+    MatIconModule,
+    MatTooltipModule
   ],
   entryComponents: [
     PerguntaComponent,
