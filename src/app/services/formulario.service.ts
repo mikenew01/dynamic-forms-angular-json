@@ -1,22 +1,26 @@
 import {Injectable} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Field} from "../model/field.model";
+import {HttpClient} from "@angular/common/http";
+import {PainelPergunta} from "../model/painel-pergunta.model";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormularioService {
+  private _jsonPainelPerguntasURL = 'assets/formulario-veiculos.json';
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
   toFormGroup(perguntas: Field<any>[]) {
     let group: any = {};
 
+    console.log('p', perguntas);
     perguntas.forEach(obj => {
       group[obj.key] = new FormControl(obj.value || '', this.toValidation(obj.validations) || []);
     });
-
 
     return new FormGroup(group);
   }
@@ -38,6 +42,10 @@ export class FormularioService {
           return Validators.maxLength(validation.value as number);
       }
     });
+  }
+
+  public getPainelPerguntas(): Observable<PainelPergunta[]> {
+    return this.http.get<PainelPergunta[]>(this._jsonPainelPerguntasURL);
   }
 
   getQuestions() {

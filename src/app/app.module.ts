@@ -15,6 +15,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
+import {HttpClientModule} from "@angular/common/http";
+import { ContainerInnerFormComponent } from './components/container-formulario/container-inner-form/container-inner-form.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import {MatButtonModule} from "@angular/material/button";
     PerguntaComponent,
     PainelPerguntaComponent,
     ContainerFormularioComponent,
+    ContainerInnerFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import {MatButtonModule} from "@angular/material/button";
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
   ],
   entryComponents: [
     PerguntaComponent,

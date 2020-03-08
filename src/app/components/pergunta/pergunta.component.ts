@@ -20,7 +20,7 @@ export class PerguntaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  private hasErros(controlName: string, errorName: string): any {
+  hasErros(controlName: string, errorName: string): any {
     return this.form.controls[controlName].hasError(errorName);
   }
 
