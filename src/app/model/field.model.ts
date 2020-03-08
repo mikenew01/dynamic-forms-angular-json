@@ -7,6 +7,8 @@ export class Field<T> {
   controlType: string;
   type: string;
   placeholder: string;
+  actionClick?: any;
+  icon?: string;
   validations: {
     validation: string,
     value?: any,
@@ -22,14 +24,18 @@ export class Field<T> {
     key?: string,
     label?: string,
     required?: boolean,
+    icon?: string;
     order?: number,
     controlType?: string,
     type?: string,
     placeholder?: string;
+    actionClick?: any;
     options?: {key: string, value: any}[],
     validations?: {validation: string, value?: any, message?: string}[]
   } = {}) {
 
+    this.icon = options.icon;
+    this.actionClick = options.actionClick;
     this.value = options.value;
     this.key = options.key || '';
     this.label = options.label || '';

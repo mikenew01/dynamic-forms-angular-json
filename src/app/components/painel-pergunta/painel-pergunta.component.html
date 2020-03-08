@@ -5,5 +5,7 @@
     <mat-panel-description>{{painelPergunta.descricao}}</mat-panel-description>
   </mat-expansion-panel-header>
 
-  <app-pergunta *ngFor="let pergunta of painelPergunta.perguntas" [form]="form" [pergunta]="pergunta"></app-pergunta>
+  <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-between start">
+    <app-pergunta fxFlex="100" *ngFor="let pergunta of painelPergunta.perguntas" [form]="form" [pergunta]="pergunta"></app-pergunta>
+  </div>
 </mat-expansion-panel>

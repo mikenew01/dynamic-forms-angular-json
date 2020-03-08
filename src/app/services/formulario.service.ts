@@ -1,23 +1,18 @@
 import {Injectable} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Field} from "../model/field.model";
-import {HttpClient} from "@angular/common/http";
-import {PainelPergunta} from "../model/painel-pergunta.model";
-import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormularioService {
-  private _jsonPainelPerguntasURL = 'assets/formulario-veiculos.json';
 
-  constructor(private http: HttpClient) {
+  constructor() {
   }
 
   toFormGroup(perguntas: Field<any>[]) {
     let group: any = {};
 
-    console.log('p', perguntas);
     perguntas.forEach(obj => {
       group[obj.key] = new FormControl(obj.value || '', this.toValidation(obj.validations) || []);
     });
@@ -42,53 +37,6 @@ export class FormularioService {
           return Validators.maxLength(validation.value as number);
       }
     });
-  }
-
-  public getPainelPerguntas(): Observable<PainelPergunta[]> {
-    return this.http.get<PainelPergunta[]>(this._jsonPainelPerguntasURL);
-  }
-
-  getQuestions() {
-    let perguntas: Field<any>[] = [
-      new Field({
-        controlType: 'text',
-        key: 'emailPessoa',
-        value: 'maikoncanuto@gmail.com',
-        label: 'E-mail',
-        type: 'email',
-        placeholder: 'maikoncanuto@gmail.com',
-        validations: [
-          {validation: 'email', message: 'Field inválido, precisa digitar e-mail'},
-          {validation: 'minLength', value: 3, message: 'Necessário preencher o campo.'},
-          {validation: 'maxLength', value: 4, message: 'Caracters máximos 2'},
-        ],
-        order: 2
-      }),
-
-      new Field({
-        controlType: 'text',
-        key: 'nome',
-        label: 'Nome Completo',
-        type: 'text',
-        placeholder: 'Maikon Canuto',
-        order: 1
-      }),
-
-      new Field({
-        controlType: 'dropdown',
-        key: 'sexo',
-        label: 'Sexo',
-        type: 'dropdown',
-        placeholder: 'Selecione o Sexo',
-        order: 3,
-        options: [
-          {key: 'Homem', value: 'M'},
-          {key: 'Mulher', value: 'F'}
-        ]
-      }),
-    ];
-
-    return perguntas.sort((a, b) => a.order - b.order);
   }
 
 }
