@@ -259,11 +259,36 @@ export class FormularioService {
             ]
           }
         ]
+      }),
+      new PainelPergunta({
+        titulo: 'Dados do veículo',
+        descricao: 'Dados do veículo',
+        perguntas: [
+          {
+            value: '',
+            key: 'identificadorVeiculo',
+            label: 'Identificador do veículo',
+            required: false,
+            order: 1,
+            controlType: 'text',
+            type: 'text',
+            placeholder: 'Identificador do veículo',
+            validations: [
+              {
+                validation: 'maxLength',
+                value: 15,
+                message: 'O campo não pode ultrapassar 15 caracters.'
+              }
+            ],
+            options: []
+          }
+        ]
       })
     ];
 
     const perguntasTmp = perguntas.map(p => {
       p.perguntas = p.perguntas.sort((a, b) => a.order - b.order);
+      p.totalPerguntas = p.perguntas.length;
       return p;
     });
 

@@ -4,7 +4,7 @@
     <mat-panel-title>{{painelPergunta.titulo}}</mat-panel-title>
     <mat-panel-description fxLayout="row" fxLayoutAlign="space-between center">
       <span>{{painelPergunta.descricao}}</span>
-      <span [class]="'count ' + getClass()">{{perguntaCount.atual}}/{{perguntaCount.total}} respondidas</span>
+      <span [class]="'count ' + getClass()">{{painelPergunta.atualPerguntas}}/{{painelPergunta.totalPerguntas}} respondidas</span>
     </mat-panel-description>
   </mat-expansion-panel-header>
 
