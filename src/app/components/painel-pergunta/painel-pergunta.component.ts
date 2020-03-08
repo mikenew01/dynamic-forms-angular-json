@@ -51,4 +51,11 @@ export class PainelPerguntaComponent implements OnInit {
     this.getValues();
   }
 
+  getClass() {
+    if(this.perguntaCount.atual === 0)
+      return '';
+
+    return this.perguntaCount.atual === this.perguntaCount.total ? 'valid' : 'invalid';
+  }
+
 }
